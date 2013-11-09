@@ -1,4 +1,4 @@
-#    Copyright (C) 2013 libre-mesh.org
+#   Copyright (C) 2013 libre-mesh.org
 #
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=lime-system
-PKG_RELEASE:=9
+PKG_RELEASE:=12
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 LIME_BUILDDATE:=$(shell date +%Y%m%d_%H%M)
 LIME_CODENAME:=bigbang
@@ -34,13 +34,14 @@ define Package/lime-system
   SECTION:=net
   CATEGORY:=LiMe
   URL:=http://libre-mesh.org
-  DEPENDS:=+uhttpd +luci +luci-app-bmx6 +luci-app-batman-adv \
+  DEPENDS:=+lime-webui \
   +iwinfo +iw +netperf +mtr \
   +bmx6 +bmx6-uci-config +bmx6-json +bmx6-sms +bmx6-table \
   +kmod-batman-adv \
   +wpad-mini +reghack \
   +kmod-macvlan +ebtables \
-  +ip +iputils-ping6
+  +dhcpdiscover +ip +iputils-ping6 \
+  +dnsmasq-lease-share
 endef
 
 define Package/lime-system/description
