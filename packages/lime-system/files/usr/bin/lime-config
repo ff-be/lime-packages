@@ -1,44 +1,16 @@
 #!/usr/bin/lua
 
-local libuci = require "uci"
-fs  = require "nixio.fs"
-iw  = require "iwinfo"
+local firewall = require "lime.firewall"
+local network = require "lime.network"
+local wireless = require "lime.wireless"
+local system = require "lime.system"
 
-firewall = require "lime.firewall"
-network = require "lime.network"
-wireless = require "lime.wireless"
-system = require "lime.system"
-config = require "lime.config"
-utils = require "lime.utils"
-
-uci = libuci:cursor()
-
---@DEPRECATED avoid use this function and/or put it in the right place!!
-function node_id()
-    local m = network.primary_mac()
-    return tonumber(m[4], 16), tonumber(m[5], 16), tonumber(m[6], 16)
-end
-
---@DEPRECATED avoid use this function and/or put it in the right place!!
-function network_id()
-    local network_essid = assert(config.get("wifi","ap_ssid"))
-    local n1, n2, n3
-    local fd = io.popen('echo "' .. network_essid .. '" | md5sum')
-    if fd then
-        local md5 = fd:read("*a")
-        n1 = tonumber(md5:match("^(..)"), 16)
-        n2 = tonumber(md5:match("^..(..)"), 16)
-        n3 = tonumber(md5:match("^....(..)"), 16)
-        fd:close()
-    end
-    return n1, n2, n3
-end
 
 function main()
-	wireless.configure()
-	network.configure()
-	firewall.configure()
-	system.configure()
+	local modules = { wireless, network, firewall, system }
+
+	for _,module in pairs(modules) do module.clean() end
+	for _,module in pairs(modules) do module.configure() end
 end
 
 main()
