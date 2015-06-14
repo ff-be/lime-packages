@@ -6,7 +6,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=luci-mod-lime-basic
+PKG_NAME:=luci-mod-status
 PKG_VERSION=$(GIT_COMMIT_DATE)-$(GIT_COMMIT_TSTAMP)
 GIT_COMMIT_DATE:=$(shell git log -n 1 --pretty=%ad --date=short . )
 GIT_COMMIT_TSTAMP:=$(shell git log -n 1 --pretty=%at . )
@@ -16,21 +16,17 @@ include $(INCLUDE_DIR)/package.mk
 define Package/$(PKG_NAME)
   SECTION:=admin
   CATEGORY:=Administration
-  TITLE:=Web interface for Libre-Mesh nodes
-  MAINTAINER:=Santiago Piccinini <spiccinini@altermundi.net>
-  DEPENDS:= +uhttpd +luci-theme-bootstrap +libiwinfo-lua +luci-base
-endef
-
-define Package/$(PKG_NAME)-ssl
-  SECTION:=admin
-  CATEGORY:=Administration
-  TITLE:=Web interface for Libre-Mesh nodes (SSL support)
-  MAINTAINER:=Santiago Piccinini <spiccinini@altermundi.net>
-  DEPENDS:= +$(PKG_NAME) +libustream-cyassl +px5g
+  TITLE:=LuCI status - provides read-only status info without login
+  MAINTAINER:=Gui Iribarren <gui@altermundi.net>
+  DEPENDS:= +uhttpd +luci-base +libiwinfo-lua +luci-lib-jquery-1-4 +luci-lib-jquery-flot-0-8 +luci-lib-json
 endef
 
 define Package/$(PKG_NAME)/description
-Minimal and simple web app to configure a libre-mesh node.
+Minimal and simple web app to view some status info:
+ * a realtime plot of wifi neighbours signal (think "iw station dump")
+ * batman-adv mesh nodes (if luci-app-batman-adv is installed)
+ * bmx6 mesh nodes (if luci-app-bmx6 is installed)
+ * ethernet switch ports status
 endef
 
 define Build/Compile
@@ -41,9 +37,4 @@ define Package/$(PKG_NAME)/install
 	$(CP) ./files/* $(1)/
 endef
 
-define Package/$(PKG_NAME)-ssl/install
-	true
-endef
-
 $(eval $(call BuildPackage,$(PKG_NAME)))
-$(eval $(call BuildPackage,$(PKG_NAME)-ssl))
