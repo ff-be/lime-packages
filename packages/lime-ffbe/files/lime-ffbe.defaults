@@ -6,6 +6,7 @@ uci -q batch <<EOF
 set lime.system=lime
 set lime.system.zonename='Europe/Brussels'
 set lime.system.timezone='CET-1CEST,M3.5.0,M10.5.0/3'
+set lime.system.hostname='ffbe-%M4%M5%M6'
 
 set lime.network=lime
 set lime.network.main_ipv6_address='fdbe:12d0:03d2:%N1%N2::/64'
@@ -23,7 +24,7 @@ set lime.wifi.htmode_2ghz=HT20
 set lime.wifi.htmode_5ghz=HT40
 set lime.wifi.mesh_mesh_id='mesh-ffbe'
 set lime.wifi.ap_ssid='test.freifunk.be'
-set lime.wifi.apname_ssid='libremesh.org-%H'
+set lime.wifi.apname_ssid='test-ffnode/%H'
 
 set firewall.@defaults[0].input=ACCEPT
 set firewall.@defaults[0].output=ACCEPT
