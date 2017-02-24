@@ -22,6 +22,10 @@ set lime.wifi.channel_2ghz=13
 set lime.wifi.channel_5ghz=44
 set lime.wifi.htmode_2ghz=HT20
 set lime.wifi.htmode_5ghz=HT40
+del lime.wifi.modes
+add_list lime.wifi.modes=ap
+add_list lime.wifi.modes=apname
+add_list lime.wifi.modes=ieee80211s
 set lime.wifi.mesh_mesh_id='mesh-ffbe'
 set lime.wifi.ap_ssid='test.freifunk.be'
 set lime.wifi.apname_ssid='test-ffnode/%H'

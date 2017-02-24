@@ -28,7 +28,7 @@ define Package/$(PKG_NAME)
 endef
 
 define Package/$(PKG_NAME)/description
-	Metapackage depending on all the required to run a freifunk.be/libremesh node
+	Metapackage depending on all the requirements to run a freifunk.be/libremesh node
 endef
 
 define Build/Compile
