@@ -27,9 +27,12 @@ del lime.wifi.modes
 add_list lime.wifi.modes=ap
 add_list lime.wifi.modes=apname
 add_list lime.wifi.modes=adhoc
-set lime.wifi.mesh_mesh_id='mesh-ffbe'
+set lime.wifi.mesh_mesh_id='ffbeMesh11s'
 set lime.wifi.ap_ssid='test.freifunk.be'
-set lime.wifi.apname_ssid='test-ffnode/%H'
+set lime.wifi.apname_ssid='ffbeNode/%H'
+set lime.wifi.adhoc_ssid='ffbeMesh'
+set lime.wifi.adhoc_mcast_rate_2ghz=9000
+set lime.wifi.adhoc_mcast_rate_5ghz=9000
 
 set firewall.@defaults[0].input=ACCEPT
 set firewall.@defaults[0].output=ACCEPT
