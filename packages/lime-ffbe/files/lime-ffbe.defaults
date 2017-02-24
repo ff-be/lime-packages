@@ -11,6 +11,7 @@ set lime.system.hostname='ffbe-%M4%M5%M6'
 set lime.network=lime
 set lime.network.main_ipv6_address='fdbe:12d0:03d2:%N1%N2::/64'
 del lime.network.protocols
+add_list lime.network.protocols=adhoc
 add_list lime.network.protocols=lan
 add_list lime.network.protocols=anygw
 add_list lime.network.protocols=batadv:%N1
@@ -25,7 +26,7 @@ set lime.wifi.htmode_5ghz=HT40
 del lime.wifi.modes
 add_list lime.wifi.modes=ap
 add_list lime.wifi.modes=apname
-add_list lime.wifi.modes=ieee80211s
+add_list lime.wifi.modes=adhoc
 set lime.wifi.mesh_mesh_id='mesh-ffbe'
 set lime.wifi.ap_ssid='test.freifunk.be'
 set lime.wifi.apname_ssid='test-ffnode/%H'
